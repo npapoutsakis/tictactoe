@@ -1,12 +1,15 @@
 package player;
 
 public class Player {
+	
 	private String name;
 	private int games_played;
 	private int wins; 
+	
 	public Player(String name, int games, int wins) {
 		this.name = name;
 		this.games_played = games;
+		this.wins = wins;
 	}
 
 	public String getName() {
@@ -38,6 +41,5 @@ public class Player {
 		System.out.println("Games: "+this.games_played);
 		System.out.println("Wins: "+this.wins);
 	}
-	
 	
 }
