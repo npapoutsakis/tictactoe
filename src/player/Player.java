@@ -4,12 +4,31 @@ public class Player {
 	
 	private String name;
 	private int games_played;
-	private int wins; 
+	private int wins;
+	private int draws;
+	private int loses;
 	
-	public Player(String name, int games, int wins) {
+	public Player() { }
+	
+	public Player(String name) {
 		this.name = name;
-		this.games_played = games;
-		this.wins = wins;
+		this.resetPlayerData();
+	}
+
+	public int getDraws() {
+		return draws;
+	}
+
+	public void setDraws(int draws) {
+		this.draws = draws;
+	}
+
+	public int getLoses() {
+		return loses;
+	}
+
+	public void setLoses(int loses) {
+		this.loses = loses;
 	}
 
 	public String getName() {
@@ -41,5 +60,13 @@ public class Player {
 		System.out.println("Games: "+this.games_played);
 		System.out.println("Wins: "+this.wins);
 	}
+	
+	public void resetPlayerData() {
+		this.games_played = 0;
+		this.wins = 0;
+		this.draws = 0;
+		this.loses = 0;
+	}
+	
 	
 }
