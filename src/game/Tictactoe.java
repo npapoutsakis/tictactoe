@@ -4,6 +4,7 @@ import player.Player;
 
 public class Tictactoe {
 	
+	String board[];
 	Player O;
 	Player X;
 	
@@ -17,25 +18,29 @@ public class Tictactoe {
 		this.X = no2;
 	}
 	
-	public Player getO() {
-		return O;
-	}
-
-	public void setO(Player o) {
-		O = o;
-	}
-
-	public Player getX() {
-		return X;
-	}
-
-	public void setX(Player x) {
-		X = x;
+	public void start() {
+		displayBoard();
 	}
 
 	//Will update data for both players
-	public void updateStatus() {
+	private void updateStatus() {
 	
+	}
+	
+	//Will print the board on the console
+	private void displayBoard() {
+        System.out.println("|---|---|---|");
+        System.out.println("| " + board[0] + " | " + board[1] + " | " + board[2] + " |");
+        System.out.println("|-----------|");
+        System.out.println("| " + board[3] + " | " + board[4] + " | " + board[5] + " |");
+        System.out.println("|-----------|");
+        System.out.println("| " + board[6] + " | " + board[7] + " | " + board[8] + " |");
+        System.out.println("|---|---|---|");
+	}
+	
+	//Will check if some player won
+	private void checkWinner() {
+		
 	}
 	
 	
