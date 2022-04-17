@@ -18,6 +18,7 @@ public class GameManager {
 		
 		game.start();
 		
+		int pos = reader.readPositiveInt("5");
 		//input form user comes here
 		
 		

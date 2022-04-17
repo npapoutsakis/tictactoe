@@ -5,6 +5,9 @@ import player.Player;
 public class Tictactoe {
 	
 	String board[];
+	Player winner;
+	String turn;
+	Boolean draw; 
 	Player O;
 	Player X;
 	
@@ -17,15 +20,25 @@ public class Tictactoe {
 	public void start() {
 		resetBoard();
 		displayBoard();
-		//check winner will run here on while true
 	}
 
-	
 	public void stop() {
+		System.out.println("Game Terminated!");
 		resetBoard();
-		updateStatus();
 	}
 	
+	
+	private void updateStatus(Player winner, Player loser) {
+		
+		if (draw) {
+			winner.updatePlayerData("draw");
+			loser.updatePlayerData("draw");
+		}else {
+			winner.updatePlayerData("win");
+			loser.updatePlayerData("lose");
+		}
+		
+	}
 	
 	//Will fill the array with spaces
 	private void resetBoard() {	
@@ -33,11 +46,7 @@ public class Tictactoe {
 			board[i] = " ";
 		}
 	}
-		
-	//Will update data for both players
-	private void updateStatus() {
-		
-	}
+	
 	
 	//Will print the board on the console
 	private void displayBoard() {
@@ -49,6 +58,7 @@ public class Tictactoe {
         System.out.println("| " + board[6] + " | " + board[7] + " | " + board[8] + " |");
         System.out.println("|-----------|");
 	}
+	
 	
 	//Will check if some player won
 	public Player checkWinner() {
@@ -85,20 +95,40 @@ public class Tictactoe {
 			
 			//For X winner
 			if (line.equals("XXX")) {
+				draw = false;
+				updateStatus(X, O);
 				return X;
 			}
 	              
 			// For O winner
 			else if (line.equals("OOO")) {
+				draw = false;
+				updateStatus(O, X);
 				return O;
 			}
 		}
 	    
+		//If we find an empty space, the game isn't over
+		for(String str : board) {
+			if(str.equals(" "))
+				System.out.println("Not Finished Yet!");
+				draw = false;
+				return null;
+		}
+		
+		//If null & draw = true we have a draw
 		//Here check for draw, and update status
-		
-		
+		draw = true;
+		updateStatus(X, O);
 		return null;
+		
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

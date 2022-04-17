@@ -61,6 +61,27 @@ public class Player {
 		System.out.println("Wins: "+this.wins);
 	}
 	
+	public void updatePlayerData(String state) {
+		
+		switch(state) {
+			case "win": 
+				this.wins++;
+				break;
+			
+			case "lose":
+				this.loses++;
+				break;
+				
+			case "draw":
+				this.draws++;
+				break;
+		}
+		
+		//No matter the state, the game had played
+		this.games_played++;
+
+	}
+	
 	public void resetPlayerData() {
 		this.games_played = 0;
 		this.wins = 0;
