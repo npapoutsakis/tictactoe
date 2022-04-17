@@ -1,5 +1,8 @@
 package player;
 
+import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
+
 public class Player {
 	
 	private String name;
@@ -59,6 +62,8 @@ public class Player {
 		System.out.println("Name: "+this.name);
 		System.out.println("Games: "+this.games_played);
 		System.out.println("Wins: "+this.wins);
+		System.out.println("Loses: "+this.loses);
+		System.out.println("Draws: "+this.draws);
 	}
 	
 	public void updatePlayerData(String state) {
@@ -90,4 +95,16 @@ public class Player {
 	}
 	
 	
+	public byte[] makeByteArray() {
+		java.nio.ByteBuffer bb = java.nio.ByteBuffer.allocate(32); // allocate 32 bytes for the output
+		bb.order(ByteOrder.BIG_ENDIAN);
+		
+		bb.put(this.getName().getBytes(StandardCharsets.US_ASCII));
+		bb.putInt(this.getGames_played());
+		bb.putInt(this.getWins());
+		bb.putInt(this.getLoses());
+		bb.putInt(this.getDraws());
+		
+		return bb.array();
+	}
 }
