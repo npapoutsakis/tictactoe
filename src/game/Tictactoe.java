@@ -34,7 +34,6 @@ public class Tictactoe {
 	}
 	
 	public void start() {
-		
 		resetBoard();
 		displayBoard();
 		
@@ -64,6 +63,7 @@ public class Tictactoe {
 	public void stop() {
 		System.out.println("Game Terminated!");
 		resetBoard();
+		this.winner = null;
 		System.out.println();
 	}
 	
@@ -177,12 +177,6 @@ public class Tictactoe {
 		}
 		
 	}
-	
-	
-	
-	
-	
-	
-	
+
 	
 }

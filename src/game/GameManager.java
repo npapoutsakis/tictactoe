@@ -5,23 +5,61 @@ import util.StandardInputRead;
 
 public class GameManager {
 	
-	public static void playGame() {
+	public StandardInputRead reader;
+	private DataBase db;
+	public Player no1;
+	public Player no2;
+	
+	
+	public GameManager() {
+		reader = new StandardInputRead();
+		db = new DataBase();
+		no1 = new Player();
+		no2 = new Player();
+	}
+	
+	public void playGame() {
 		
-		StandardInputRead reader = new StandardInputRead();
-		DataBase database = new DataBase();
-		
-		Player p0 = new Player(reader.readString("Player 1 Name: "));
-		Player p1 = new Player(reader.readString("Player 2 Name: "));
+		no1.setName(reader.readString("Player 1 Name: "));
+		no2.setName(reader.readString("Player 2 Name: "));
 		System.out.println();
 		
-		database.savePlayers(p0, p1);
+		//Save players in cache -> ArrayList
+		db.savePlayers(no1, no2);
 		
-		Tictactoe game = new Tictactoe(p0, p1);
+		//Store name in file -> warn that the name all ready exists
+		db.storePlayers();
 		
-		game.start();
+		Tictactoe game = new Tictactoe(no1, no2);
+		
+		Boolean wonna_play = true;
+		
+		while(wonna_play == true) {
+			
+			game.start();
+			
+			game.stop();
+			
+			String answer = reader.readString("Continue?: ");
+			
+			if(answer.equalsIgnoreCase("no") || answer.equalsIgnoreCase("n") || !answer.equalsIgnoreCase("y")) {
+				wonna_play = false;
+			}
+			else 
+				wonna_play = true;				
+			
+		}
+		
+		game = null;
+	}
 	
-		game.stop();
-
+	
+	public void stopGame() {
+		db.printDataBase();
+		no1 = null;
+		no2 = null;
+		return;
 	}
 
+	
 }
